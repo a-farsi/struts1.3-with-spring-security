@@ -18,11 +18,38 @@
     </servlet-mapping>
 
     <!--     Spring security 4.0  config -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>com.percyvega.config.SecurityConfig</param-value>
+    </context-param>
 
-    <!--
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+<!--
+    &lt;!&ndash;
 	  - Location of the XML file that defines the root application context
 	  - Applied by ContextLoaderListener.
-	  -->
+	  &ndash;&gt;
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring/spring-security.xml</param-value>
@@ -39,13 +66,13 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--
+    &lt;!&ndash;
   - Loads the root application context of this web app at startup.
   - The application context is then available via
   - WebApplicationContextUtils.getWebApplicationContext(servletContext).
--->
+&ndash;&gt;
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    </listener>-->
 
 </web-app>
